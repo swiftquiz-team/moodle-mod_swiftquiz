@@ -1,0 +1,11 @@
+<div class="swiftquiz-box">
+    <p>{{# str }} join_quiz_instructions, swiftquiz {{/ str }}</p>
+    <p>
+        <b>{{# str }} session, swiftquiz {{/ str }}:</b> {{ name }}
+    </p>
+    <p>{{ anonymity_info }}</p>
+    {{# started }}
+    <p>{{# str }} attempt_started, swiftquiz {{/ str }}</p>
+    {{/ started }}
+    {{{ form }}}
+</div>

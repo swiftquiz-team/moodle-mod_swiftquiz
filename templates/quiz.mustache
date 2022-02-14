@@ -1,0 +1,97 @@
+<div id="swiftquiz">
+    {{# instructor }}
+    <div id="swiftquiz_controls_box" class="swiftquiz-box">
+        <div id="swiftquiz_controls">
+            <div class="quiz-list-buttons quiz-control-buttons hidden">
+                {{# buttons }}<button id="swiftquiz_control_{{ id }}" class="btn">
+                    <i class="fa fa-{{ icon }}"></i> {{ text }}
+                </button>{{/ buttons }}
+                <div style="clear:both;"></div>
+            </div>
+
+            <div id="swiftquiz_improvise_menu" class="start-question-menu"></div>
+            <div id="swiftquiz_jump_menu" class="start-question-menu"></div>
+            <div class="quiz-list-buttons">
+                <button id="swiftquiz_control_startquiz" class="btn">
+                    <i class="fa fa-start"></i> {{# str }} startquiz, swiftquiz {{/ str }}
+                </button>
+                <h4 class="inline"></h4>
+                <button id="swiftquiz_control_exit" class="btn">
+                    <i class="fa fa-close"></i> {{# str }} exit, swiftquiz {{/ str }}
+                </button>
+            </div>
+<!--            <button id="triggerBtn">modalBox</button>-->
+            <!-- modalBox -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Create your question</h2>
+                        <span id="closeBtn" class="close">×</span>
+                    </div>
+                    <div class="modal-body">
+                        <button id = "MCO3">3 Multichoice Options</button>
+                        <button id = "MCO4">4 Multichoice Options</button>
+                        <button id = "MCO5">5 Multichoice Options</button>
+                        <button id = "short">Short Answer</button>
+                        <form method="post">
+                            <p>
+<!--                                <label for="qname">Name:</label>-->
+<!--                                <input type="text" name="qname" id="qname" size="30">-->
+<!--                                <br>-->
+                                <label for="question">Question:</label>
+                                <input type="text" name="question" id="question" size="50">
+                                <br>
+                                <label for="option_a" id = "label_a">Option A:</label>
+                                <input type="text" name="option_a" id="option_a" size="20">
+                                <br>
+                                <label for="option_b" id = "label_b">Option B:</label>
+                                <input type="text" name="option_b" id="option_b" size="20">
+                                <br>
+                                <label for="option_c" id = "label_c">Option C:</label>
+                                <input type="text" name="option_c" id="option_c" size="20">
+                                <br>
+                                <label for="option_d" id = "label_d">Option D:</label>
+                                <input type="text" name="option_d" id="option_d" size="20">
+                                <br>
+                                <label for="option_e" id = "label_e">Option E:</label>
+                                <input type="text" name="option_e" id="option_e" size="20">
+                            </p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="save">save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="swiftquiz_control_separator"></div>
+        </div>
+    </div>
+    <div id="swiftquiz_correct_answer_container" class="swiftquiz-response-container swiftquiz-box hidden"></div>
+    <div id="swiftquiz_side_container" class="swiftquiz-box">
+        <div id="swiftquiz_responded_container" class="swiftquiz-box">
+            <div>
+                <div id="swiftquiz_responded_box">
+                    <h4 class="inline"></h4>
+                    {{!Add the display of the number of correct answers to the test questions}}
+                    <span id="rightanwsernum" class="inline" style="margin-left: 50px;font-size: 17px;" ></span>
+                </div>
+            </div>
+        </div>
+        <div id="swiftquiz_question_timer" class="swiftquiz-box hidden"></div>
+        <div id="swiftquiz_response_info_container" class="swiftquiz-box hidden"></div>
+    </div>
+    {{/ instructor }}
+    {{^ instructor }}
+    <div id="swiftquiz_question_timer" class="swiftquiz-box hidden"></div>
+    {{/ instructor }}
+    <div id="swiftquiz_info_container" class="swiftquiz-box hidden"></div>
+    <div id="swiftquiz_question_box"></div>
+    {{# instructor }}
+    <div>
+        <button id="swiftquiz_undo_merge" class="btn btn-primary hidden">
+            <i class="fa fa-undo"></i>
+        </button>
+    </div>
+    <div id="swiftquiz_responses_container" class="swiftquiz-response-container swiftquiz-box hidden"></div>
+    {{/ instructor }}
+</div>

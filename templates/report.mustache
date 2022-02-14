@@ -1,0 +1,70 @@
+<div class="swiftquiz-box">
+    {{# select_session }}
+    <div>
+        <h3>{{# str }} select_session, swiftquiz {{/ str }}</h3>
+        <br>
+        <div class="inline-block">
+            {{> core/single_select }}
+        </div>
+    </div>
+    {{/ select_session }}
+    {{# session }}
+        <div id="report_overview_controls" class="swiftquiz-box">
+            <button data-action="attendance" class="btn btn-primary">
+                {{# str }} attendance, swiftquiz {{/str}}
+            </button>
+            {{!Add the shortanwserslots parameter to JS when the mouse clicks report }}
+            <button data-action="responses" data-shortanwserslots="{{shortanswerslots}}"  class="btn btn-primary">
+                {{# str }} responses, swiftquiz {{/str}}
+            </button>
+            <a href="reports.php?id={{ cmid }}&quizid={{ quizid }}&sessionid={{ id }}&action=export&what=report&download=yes">
+                {{# str }} download_report, swiftquiz {{/str}}
+            </a>
+        </div>
+        <div id="report_overview_responses" class="swiftquiz-response-container hidden">
+            {{# slots }}
+                <div class="swiftquiz-box">
+                    <h2>
+                        <span class="filter_mathjaxloader_equation">
+                                {{{ name}}}
+                        </span>
+                        {{Add the display of the number of correct answers to the test questions }}
+                        <span id="rightcount_{{ num }}" style="float: right;margin-right: 20px;">{{{rightcount}}} / {{count_answered}}</span>
+                    </h2>
+                    <span class="filter_mathjaxloader_equation">
+                        {{{ description }}}
+                    </span>
+                    <table id="responses_wrapper_table_{{ num }}" class="swiftquiz-responses-overview"></table>
+                    {{Add word cloud HTML elements for each question }}
+                    <div id="wordclound_{{ num }}"></div>
+                    <br>
+                    <a href="reports.php?id={{ cmid }}&quizid={{ quizid }}&sessionid={{ id }}&slot={{ num }}&action=export&what=question&download=yes">
+                        {{# str }} download_responses, swiftquiz {{/ str }}
+                    </a>
+                </div>
+            {{/ slots }}
+        </div>
+        <div id="report_overview_responded" class="swiftquiz-box">
+            <h2>{{# str }} attendance_list, swiftquiz {{/str}}</h2>
+            <table>
+                <tr>
+                    <th>{{# str }} student, swiftquiz {{/str}}</th>
+                    <th>{{# str }} responses, swiftquiz {{/ str }}</th>
+                </tr>
+                {{# students }}
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>{{# str }} a_responses, swiftquiz, {{ count }} {{/ str }}</td>
+                    </tr>
+                {{/ students }}
+            </table>
+            <br>
+            <p>{{# str }} a_students_joined_quiz, swiftquiz, {{ count_total }} {{/ str }}</p>
+            <p>{{# str }} a_students_answered, swiftquiz, {{ count_answered }} {{/ str }}</p>
+            <br>
+            <a href="reports.php?id={{ cmid }}&quizid={{ quizid }}&sessionid={{ id }}&action=export&what=attendance&download=yes">
+                {{# str }} download_attendance_list, swiftquiz {{/ str }}
+            </a>
+        </div>
+    {{/ session }}
+</div>

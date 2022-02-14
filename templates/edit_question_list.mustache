@@ -1,0 +1,45 @@
+<div class="generalbox boxaligncenter swiftquiz-box swiftquiz-response-container">
+    <div id="questionrow" class="row">
+        <div class="inline-block span6">
+            <h2>{{# str }} questions, swiftquiz {{/ str }}</h2>
+            <ol class="questionlist">
+                {{# questions }}
+                    <li data-question-id="{{ id }}">
+                        <div class="controls">
+                            <div class="dragquestion">
+                                {{# pix }} i/dragdrop, core {{/ pix }}
+                            </div>
+                            <div class="icon">
+                                {{{ icon }}}
+                            </div>
+                            <div class="name">
+                                <span class="filter_mathjaxloader_equation">
+                                    {{{ name }}}
+                                </span>
+                            </div>
+                            {{# first }}{{# pix }} spacer, core {{/ pix }}{{/ first }}
+                            {{^ first }}
+                                <a class="edit-question-action" data-action="up" data-question-id="{{ id }}">
+                                    {{# pix }} t/up, core, {{# str }} question_move_up, swiftquiz, {{ slot }} {{/ str }} {{/ pix }}
+                                </a>
+                            {{/ first }}
+                            {{# last }}{{# pix }} spacer, core {{/ pix }}{{/ last }}
+                            {{^ last }}
+                                <a class="edit-question-action" data-action="down" data-question-id="{{ id }}">
+                                    {{# pix }} t/down, core, {{# str }} question_move_down, swiftquiz, {{ slot }} {{/ str }} {{/ pix }}
+                                </a>
+                            {{/ last }}
+                            <a href="{{{ editurl }}}">{{# pix }} t/edit, core, {{# str }} edit_question, swiftquiz {{/ str }} {{/ pix }}</a>
+                            <a class="edit-question-action" data-action="delete" data-question-id="{{ id }}">
+                                {{# pix }} t/delete, core, {{# str }} delete_question, swiftquiz, {{ slot }} {{/ str }} {{/ pix }}
+                            </a>
+                        </div>
+                    </li>
+                {{/ questions  }}
+            </ol>
+        </div>
+        <div class="inline-block span6">
+            {{{ qbank }}}
+        </div>
+    </div>
+</div>

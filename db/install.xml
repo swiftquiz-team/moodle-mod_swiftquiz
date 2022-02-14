@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/swiftquiz/db" VERSION="20160306" COMMENT="XMLDB file for Moodle mod/swiftquiz"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="swiftquiz" COMMENT="A swiftquiz is the reference table of which sessions may be created from. Does not change during a session.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="defaultquestiontime" TYPE="int" LENGTH="3" NOTNULL="true" DEFAULT="30" SEQUENCE="false" COMMENT="How long do they get for each question?"/>
+        <FIELD NAME="waitforquestiontime" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="5" SEQUENCE="false" COMMENT="The time to wait for a question before displaying students the question"/>
+        <FIELD NAME="cfganonymity" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="cfgallowguests" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_questions" COMMENT="Reference table for questions in a swiftquiz. Does not change during a session.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="swiftquizid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" COMMENT="The swiftquiz this question is associated with"/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" COMMENT="The question id for the question in the question engine"/>
+        <FIELD NAME="questiontime" TYPE="int" LENGTH="11" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Question time in seconds. 0 means default for the quiz"/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Which order the question is in. Not to be confused with the slot in a session question."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="swiftquizid" TYPE="foreign" FIELDS="swiftquizid" REFTABLE="swiftquiz" REFFIELDS="id"/>
+        <KEY NAME="questionid" TYPE="foreign" FIELDS="questionid" REFTABLE="question" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_sessions" COMMENT="A session is a unique instance of a swiftquiz">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="swiftquizid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sessionopen" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether or not the session is open"/>
+        <FIELD NAME="showfeedback" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether or not students should receive feedback after answering"/>
+        <FIELD NAME="status" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="The current status/state of the session"/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="This is which swiftquiz question was last run. Not related to session questions."/>
+        <FIELD NAME="currentquestiontime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The time the current question is allowed in seconds"/>
+        <FIELD NAME="nextstarttime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The timestamp of the next start time"/>
+        <FIELD NAME="anonymity" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="allowguests" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="created" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp for when this session was created."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="swiftquizid" TYPE="foreign" FIELDS="swiftquizid" REFTABLE="swiftquiz" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_session_questions" COMMENT="Questions for a specific swiftquiz session">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="questionid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" COMMENT="The id for the question in the question bank"/>
+        <FIELD NAME="questiontime" TYPE="int" LENGTH="11" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Question time in seconds."/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The question number in the question usage by activity (quba). Starts at 1 and is incremented for every new question."/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="swiftquiz_sessions" REFFIELDS="id"/>
+        <KEY NAME="questionid" TYPE="foreign" FIELDS="questionid" REFTABLE="question" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_attempts" COMMENT="A swiftquiz attempt maps the question usage by activity (quba) and its question attempts for a student within a particular session.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="11" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="questionengid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The question (engine) usage id"/>
+        <FIELD NAME="guestsession" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" COMMENT="To identify guest users."/>
+        <FIELD NAME="status" TYPE="int" LENGTH="5" NOTNULL="true" SEQUENCE="false" COMMENT="Which state the attempt is in."/>
+        <FIELD NAME="responded" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="Whether or not the user responded for the particular session's current question"/>
+        <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp for when the attempt was started"/>
+        <FIELD NAME="timefinish" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Timestamp for when the attempt was finished"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Timestamp for when this attempt was modified"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="swiftquiz_sessions" REFFIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="questionengid" TYPE="foreign" FIELDS="questionengid" REFTABLE="question_usages" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_votes" COMMENT="Votes for a question">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="swiftquizid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="attempt" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The student answer in raw text format"/>
+        <FIELD NAME="initialcount" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="How many students answered this initially"/>
+        <FIELD NAME="finalcount" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="How many students answered this during the vote"/>
+        <FIELD NAME="userlist" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="List of users who have voted. TODO: Normalize"/>
+        <FIELD NAME="qtype" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Which question type it was. TODO: Remove, as it can be reached by slot column"/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The session question slot this vote was created for"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="swiftquizid" TYPE="foreign" FIELDS="swiftquizid" REFTABLE="swiftquiz" REFFIELDS="id"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="swiftquiz_sessions" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_merges" COMMENT="Response merges for a question">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="slot" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The session question slot this vote was created for"/>
+        <FIELD NAME="ordernum" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The number of merges that happened before this one for this slot."/>
+        <FIELD NAME="original" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The original response"/>
+        <FIELD NAME="merged" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The merged response"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="swiftquiz_sessions" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="swiftquiz_attendance" COMMENT="Which students attended a session">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="sessionid" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="11" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="numresponses" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="sessionid" TYPE="foreign" FIELDS="sessionid" REFTABLE="swiftquiz_sessions" REFFIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
