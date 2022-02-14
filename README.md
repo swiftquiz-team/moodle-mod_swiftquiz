@@ -19,11 +19,14 @@ Documentation is available [here](https://github.com/KQMATH/moodle-mod_swiftquiz
 
 ## Feedback:
 **Project lead:** 
+
 Erick Purwanto <Erick.Purwanto@xjtlu.edu.cn>
 
-**Developer:** Xiang Xie <Xiang.Xie20@student.xjtlu.edu.cn>
-               Zeqiang Ning <Zeqiang.Ning19@student.xjtlu.edu.cn> 
-               Yiming Li <Yiming.Li20@student.xjtlu.edu.cn>
+**Developer:** 
+
+Xiang Xie <Xiang.Xie20@student.xjtlu.edu.cn>
+Zeqiang Ning <Zeqiang.Ning19@student.xjtlu.edu.cn> 
+Yiming Li <Yiming.Li20@student.xjtlu.edu.cn>
 
 ## See also
 
