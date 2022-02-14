@@ -1,4 +1,4 @@
-# swiftQuiz
+# SwiftQuiz
 
 ## What is it?
 swiftQuiz is designed to be used in face-to-face lessons.
