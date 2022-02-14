@@ -18,9 +18,17 @@ The repolls are treated as separate questions, and you will get a correct order 
 Documentation is available [here](https://github.com/KQMATH/moodle-mod_swiftquiz/wiki), including [installation instructions](https://github.com/KQMATH/moodle-mod_swiftquiz/wiki/Installation-instructions).
 
 ## Feedback:
-**Project lead:** Hans Georg Schaathun: <hasc@ntnu.no>
+**Project lead:** 
+Erick Purwanto <Erick.Purwanto@xjtlu.edu.cn>
 
-**Developer:** Sebastian S. Gundersen: <sebastsg@stud.ntnu.no>
+**Developer:** 
+Xiang Xie <Xiang.Xie20@student.xjtlu.edu.cn>
+
+Zeqiang Ning <Zeqiang.Ning19@student.xjtlu.edu.cn> 
+
+Yiming Li <Yiming.Li20@student.xjtlu.edu.cn>
+
+
 
 ## See also
 
