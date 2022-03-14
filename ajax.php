@@ -352,6 +352,7 @@ function get_right_response(swiftquiz_session $session) {
  */
 function close_session(swiftquiz_session $session) {
     global $DB;
+//    require_once('classes/improviser.php'); //
 
 
     $session->load_attempts();
@@ -361,12 +362,17 @@ function close_session(swiftquiz_session $session) {
                      WHERE q.name LIKE :prefix
                   ";
     $questions = $DB->get_records_sql($sql, ['prefix' => '{IMPROV}%']);
-    foreach ($questions as $question){
-        $DB->delete_records('qtype_'.$question->qtype.'_options', ['id' => $question->id]);
-        $DB->delete_records('question_answers', ['id' => $question->id]);
-        $DB->delete_records('question', ['id' => $question->id]);
-    }
+
+//    $DB->delete_improvised_question()
+//    foreach ($questions as $question){
+//        $DB->delete_records('qtype_'.$question->qtype.'_options', ['id' => $question->id]);
+//        $DB->delete_records('question_answers', ['id' => $question->id]);
+//        $DB->delete_records('question', ['id' => $question->id]);
+//    }
     $session->end_session();
+    foreach ($questions as $question) {
+        question_delete_question($question->id);
+    }
     return ['status' => 'success'];
 }
 
@@ -402,7 +408,12 @@ function get_results(swiftquiz_session $session) {
             if(substr($qt, 0, 1) == '*'){
                 $is_improvise = 'true';
             }
-            $qs = substr($qs, strlen($qt)+2);
+            $temp = explode(';', $qs);
+            $offset = strlen($qt);
+//            if(count($temp) != 3 || ($is_improvise == 'true')){
+            $offset+=2;
+//            }
+            $qs = substr($qs, $offset);
             $options = explode(';', $qs);
             $options = swiftquiz_trim_array($options);
             if (count($results['responses']) > 0) {
