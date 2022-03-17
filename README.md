@@ -21,9 +21,6 @@ SwiftQuiz's answer statistics are optimized in various ways, with correct and wr
 
 The short answer question type and the drag and drop question type have also been optimized, adding word cloud display statistics, block display, etc. You can also show or hide the word cloud or default bar statistics.  
 
-## Documentation
-Documentation is available , including
-
 ## Feedback:
 
 **Project lead:** 
