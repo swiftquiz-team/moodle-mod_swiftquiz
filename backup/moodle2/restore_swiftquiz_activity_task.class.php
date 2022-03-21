@@ -52,8 +52,8 @@ class restore_swiftquiz_activity_task extends restore_activity_task {
      */
     static public function define_decode_rules() {
         return [
-            new restore_decode_rule('swiftquizVIEWBYID', '/mod/swiftquiz/view.php?id=$1', 'course_module'),
-            new restore_decode_rule('swiftquizINDEX', '/mod/swiftquiz/index.php?id=$1', 'course')
+            new restore_decode_rule('SWIFTQUIZVIEWBYID', '/mod/swiftquiz/view.php?id=$1', 'course_module'),
+            new restore_decode_rule('SWIFTQUIZINDEX', '/mod/swiftquiz/index.php?id=$1', 'course')
         ];
     }
 
