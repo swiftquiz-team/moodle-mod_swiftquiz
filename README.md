@@ -35,9 +35,8 @@ The short answer question type and the drag and drop question type have also bee
 
 ## See also
 
-+ [ShortMath Question Type](https://github.com/KQMATH/moodle-qtype_shortmath)
-+ [swiftQuiz in the Moodle plugin repository](https://moodle.org/plugins/mod_swiftquiz)
-+ [SwiftQuiz Github Wiki](https://github.com/BinaryLorain/swiftquiz/wiki)
++ [SwiftQuiz GitHub](https://github.com/BinaryLorain/swiftquiz)
++ [SwiftQuiz GitHub Wiki](https://github.com/BinaryLorain/swiftquiz/wiki)
 
 ## Please note
 The original plugin, Realtime Quiz, was written by Davo Smith: <moodle@davosmith.co.uk>
