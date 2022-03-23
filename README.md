@@ -1,7 +1,5 @@
 # SwiftQuiz
 
-![XJTLU](XJTLU_logo.png =100x100)
-
 ## What is it?
 
 swiftQuiz is designed to be used in face-to-face lessons.
@@ -49,3 +47,5 @@ The plugin was rewritten to integrate the core Moodle question engine. John Hoop
 SwiftQuiz is a fork of ActiveQuiz, intended for different use cases.
 
 SwiftQuiz is part of XJTLU TDF20/21 - R22-145.
+
+![XJTLU](XJTLU_logo.png)
