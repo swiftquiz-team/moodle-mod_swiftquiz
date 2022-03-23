@@ -1,6 +1,6 @@
 # SwiftQuiz
 
-![XJTLU](XJTLU_logo.jpeg)
+![XJTLU](XJTLU_logo.png)
 
 ## What is it?
 
