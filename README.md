@@ -1,5 +1,7 @@
 # SwiftQuiz
 
+![XJTLU](XJTLU_logo.jpeg)
+
 ## What is it?
 
 swiftQuiz is designed to be used in face-to-face lessons.
@@ -7,7 +9,7 @@ The teacher may plan questions in advance, but can also easily improvise on the 
 Write your question on the blackboard, and select an appropriate question type from the dropdown menu.
 Several improvise questions will already be included: Short answer, multichoice (3, 4 & 5), true/false.
 
-And you can use the **create** button to swiftly create a question, while providing different problem types.  
+And you can use the **create** button to swiftly create a question, while providing different problem types.
 
 During the lesson, the teacher starts the quiz. Students can now connect to this quiz.
 Once the teacher is satisfied that all students have connected to the quiz, they can click on **Start Quiz**
@@ -17,13 +19,13 @@ Depending on the question settings the question will end automatically, or will 
 The teacher can, at a later date, go back through the results and, for each question, see exactly what answer each student gave.
 The repolls are treated as separate questions, and you will get a correct order in the review page.
 
-SwiftQuiz's answer statistics are optimized in various ways, with correct and wrong answers displayed in green and red respectively, regardless of whether the answer is selected or not, to help students and teachers better understand the answer situation.  
+SwiftQuiz's answer statistics are optimized in various ways, with correct and wrong answers displayed in green and red respectively, regardless of whether the answer is selected or not, to help students and teachers better understand the answer situation.
 
-The short answer question type and the drag and drop question type have also been optimized, adding word cloud display statistics, block display, etc. You can also show or hide the word cloud or default bar statistics.  
+The short answer question type and the drag and drop question type have also been optimized, adding word cloud display statistics, block display, etc. You can also show or hide the word cloud or default bar statistics.
 
 ## Feedback:
 
-**Project lead:** 
+**Project lead:**
 
 - Erick Purwanto: <Erick.Purwanto@xjtlu.edu.cn>
 
