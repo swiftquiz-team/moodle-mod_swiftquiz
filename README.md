@@ -1,6 +1,6 @@
 # SwiftQuiz
 
-![XJTLU](XJTLU_logo.png)
+![XJTLU](XJTLU_logo.png =100x100)
 
 ## What is it?
 
