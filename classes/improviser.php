@@ -102,7 +102,7 @@ class improviser {
      * Deletes the improvised question definition with matching name if it exists.
      * @param string $name of question
      */
-    private function delete_improvised_question(string $name) {
+    public function delete_improvised_question(string $name) {
         $question = $this->get_improvised_question_definition($name);
         if ($question !== false) {
             question_delete_question($question->id);

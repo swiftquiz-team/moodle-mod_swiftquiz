@@ -44,7 +44,7 @@ function swiftquiz_view_start_quiz(swiftquiz $swiftquiz) {
     global $PAGE;
     // Set the quiz view page to the base layout for 1 column layout.
     $PAGE->set_pagelayout('base');
-    $PAGE->requires->js('/mod/swiftquiz/js/wordcloud2.js');
+    $PAGE->requires->js('/mod/swiftquiz/js/wordcloud2/wordcloud2.js');
     $session = $swiftquiz->load_open_session();
     if (!$session) {
         swiftquiz_view_default($swiftquiz);

@@ -4,7 +4,12 @@
 $flag = false;
 $feedback = "";
 $text = '';
-if (isset($_POST['name']) && isset($_POST["question"]) && isset($_POST['answer1']) && isset($_POST['answer2']) && isset($_POST['answer3'])) {
+$name = optional_param('name', '', PARAM_TEXT);
+$question = optional_param('question', '', PARAM_TEXT);
+$answer1 =optional_param('answer1', '', PARAM_TEXT);
+$answer2 =optional_param('answer2', '', PARAM_TEXT);
+$answer3 =optional_param('answer3', '', PARAM_TEXT);
+if ($name != '' && $question != ''  && $answer1 != ''  && $answwer2 != ''  && $answer3 != '' ) {
     $feedback = "Successful submission";
     $flag = true;
 }
@@ -36,12 +41,15 @@ if (isset($_POST['name']) && isset($_POST["question"]) && isset($_POST['answer1'
         <input type="submit">
 </form>
 <?php
-    $name = $_POST['name'];
-    $question = $_POST['question'];
-    $answer = [];
-    $answer[] = $_POST['answer1'];
-    $answer[] = $_POST['answer2'];
-    $answer[] = $_POST['answer3'];
+   $name = optional_param('name', '', PARAM_TEXT);
+   $question = optional_param('question', '', PARAM_TEXT);
+   $answer1 =optional_param('answer1', '', PARAM_TEXT);
+   $answer2 =optional_param('answer2', '', PARAM_TEXT);
+   $answer3 =optional_param('answer3', '', PARAM_TEXT);
+   $answer = [];
+   $answer[] = $answer1;
+   $answer[] = $answer2;
+   $answer[] = $answer3;
 //    require_once ('ajax.php');
     $go = 1;
 ?>

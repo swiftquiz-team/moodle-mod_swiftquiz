@@ -70,3 +70,164 @@ function swiftquiz_view_tabs(swiftquiz $swiftquiz, string $tab) : string {
     }
     return print_tabs($tabs, $tab, $inactive, $activated, true);
 }
+
+namespace mod_swiftquiz;
+
+/**
+ * Check if this swiftquiz has an open session.
+ * @param int $swiftquizid
+ * @return bool
+ * @throws \dml_exception
+ */
+function swiftquiz_session_open($swiftquizid) {
+    global $DB;
+    $sessions = $DB->get_records('swiftquiz_sessions', [
+        'swiftquizid' => $swiftquizid,
+        'sessionopen' => 1
+    ]);
+    return count($sessions) > 0;
+}
+
+/**
+ * Gets the question bank view based on the options passed in at the page setup.
+ * @param \question_edit_contexts $contexts
+ * @param swiftquiz $swiftquiz
+ * @param \moodle_url $url
+ * @param array $pagevars
+ * @return string
+ * @throws \coding_exception
+ */
+function swiftquiz_get_qbank_view(\question_edit_contexts $contexts, swiftquiz $swiftquiz, \moodle_url $url, array $pagevars) {
+    $qperpage = optional_param('qperpage', 10, PARAM_INT);
+    $qpage = optional_param('qpage', 0, PARAM_INT);
+    // Capture question bank display in buffer to have the renderer render output.
+    ob_start();
+    $questionbank = new bank\swiftquiz_question_bank_view($contexts, $url, $swiftquiz->course, $swiftquiz->cm);
+    $questionbank->display('editq', $qpage, $qperpage, $pagevars['cat'], true, true, true);
+    return ob_get_clean();
+}
+
+/**
+ * Echos the list of questions using the renderer for swiftquiz.
+ * @param \question_edit_contexts $contexts
+ * @param swiftquiz $swiftquiz
+ * @param \moodle_url $url
+ * @param array $pagevars
+ * @throws \coding_exception
+ * @throws \moodle_exception
+ */
+function swiftquiz_list_questions(\question_edit_contexts $contexts, swiftquiz $swiftquiz, \moodle_url $url, array $pagevars) {
+    $qbankview = swiftquiz_get_qbank_view($contexts, $swiftquiz, $url, $pagevars);
+    $swiftquiz->renderer->list_questions($swiftquiz, $swiftquiz->questions, $qbankview, $url);
+}
+
+/**
+ * @param swiftquiz $swiftquiz
+ * @throws \coding_exception
+ */
+function swiftquiz_edit_order(swiftquiz $swiftquiz) {
+    $order = required_param('order', PARAM_RAW);
+    $order = json_decode($order);
+    $swiftquiz->set_question_order($order);
+}
+
+/**
+ * @param swiftquiz $swiftquiz
+ * @param \moodle_url $url
+ * @throws \coding_exception
+ * @throws \moodle_exception
+ */
+function swiftquiz_edit_add_question(swiftquiz $swiftquiz, \moodle_url $url) {
+    $questionids = required_param('questionids', PARAM_TEXT);
+    $questionids = explode(',', $questionids);
+    foreach ($questionids as $questionid) {
+        $swiftquiz->add_question($questionid);
+    }
+    // Ensure there is no action or questionid in the base url.
+    $url->remove_params('action', 'questionids');
+    redirect($url, null, 0);
+}
+
+/**
+ * @param swiftquiz $swiftquiz
+ * @throws \coding_exception
+ */
+function swiftquiz_edit_edit_question(swiftquiz $swiftquiz) {
+    $questionid = required_param('questionid', PARAM_INT);
+    $swiftquiz->edit_question($questionid);
+}
+
+/**
+ * @param swiftquiz $swiftquiz
+ * @param \question_edit_contexts $contexts
+ * @param \moodle_url $url
+ * @param $pagevars
+ * @throws \coding_exception
+ * @throws \moodle_exception
+ */
+function swiftquiz_edit_qlist(swiftquiz $swiftquiz, \question_edit_contexts $contexts, \moodle_url $url, array $pagevars) {
+    $swiftquiz->renderer->header($swiftquiz, 'edit');
+    swiftquiz_list_questions($contexts, $swiftquiz, $url, $pagevars);
+    $swiftquiz->renderer->footer();
+}
+
+
+//report
+/**
+ * @param swiftquiz $swiftquiz
+ * @param \moodle_url $url
+ * @throws \coding_exception
+ * @throws \dml_exception
+ * @throws \moodle_exception
+ */
+function swiftquiz_view_session_report(swiftquiz $swiftquiz, \moodle_url $url) {
+    $sessionid = optional_param('sessionid', 0, PARAM_INT);
+    if ($sessionid === 0) {
+        // If no session id is specified, we try to load the first one.
+        global $DB;
+        $sessions = $DB->get_records('swiftquiz_sessions', [
+            'swiftquizid' => $swiftquiz->data->id
+        ]);
+        if (count($sessions) === 0) {
+            echo get_string('no_sessions_exist', 'swiftquiz');
+            return;
+        }
+        $sessionid = current($sessions)->id;
+    }
+    $session = new swiftquiz_session($swiftquiz, $sessionid);
+    $session->load_attempts();
+    $url->param('sessionid', $sessionid);
+    $context = $swiftquiz->renderer->view_session_report($session, $url);
+    echo $swiftquiz->renderer->render_from_template('swiftquiz/report', $context);
+}
+
+/**
+ * @param swiftquiz $swiftquiz
+ * @throws \coding_exception
+ */
+function swiftquiz_export_session_report(swiftquiz $swiftquiz) {
+    $what = required_param('what', PARAM_ALPHANUM);
+    $sessionid = required_param('sessionid', PARAM_INT);
+    $session = new swiftquiz_session($swiftquiz, $sessionid);
+    $session->load_attempts();
+    $attempt = reset($session->attempts);
+    if (!$attempt) {
+        return;
+    }
+    header('Content-Type: application/csv');
+    $exporter = new exporter();
+    switch ($what) {
+        case 'report':
+            $exporter->export_session_csv($session, $session->attempts);
+            break;
+        case 'question':
+            $slot = required_param('slot', PARAM_INT);
+            $exporter->export_session_question_csv($session, $attempt, $slot);
+            break;
+        case 'attendance':
+            $exporter->export_attendance_csv($session);
+            break;
+        default:
+            break;
+    }
+}
