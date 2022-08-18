@@ -34,66 +34,67 @@ require_once($CFG->dirroot . '/question/editlib.php');
 require_login();
 
 
+    global $PAGE, $COURSE;
+    $action = optional_param('action', 'listquestions', PARAM_ALPHA);
+   
+    $id = optional_param('id', false, PARAM_INT);
+    // Inconsistency in question_edit_setup.
+    // if (isset($_GET['id'])) {
+    //     $_GET['cmid'] = $_GET['id'];
+    // }
+    // if (isset($_POST['id'])) {
+    //     $_POST['cmid'] = $_POST['id'];
+    // }
+    if ($id) {
+        $_GET['cmid'] = $id;
+    }
+    if ($id) {
+        $_POST['cmid'] = $id;
+    }
 
-/**
- * View edit page.
- */
+    list(
+        $url,
+        $contexts,
+        $cmid,
+        $cm,
+        $module, // swiftquiz database record.
+        $pagevars) = question_edit_setup('editq', '/mod/swiftquiz/edit.php', true);
 
-global $PAGE, $COURSE;
-$action = optional_param('action', 'listquestions', PARAM_ALPHA);
-$id = optional_param('id', false, PARAM_INT);
-// Inconsistency in question_edit_setup.
-if ($id) {
-    $_GET['cmid'] = $id;
-}
-if ($id) {
-    $_POST['cmid'] = $id;
-}
+    $swiftquiz = new swiftquiz($cmid);
+    $renderer = $swiftquiz->renderer;
 
-list(
-    $url,
-    $contexts,
-    $cmid,
-    $cm,
-    $module, // swiftquiz database record.
-    $pagevars
-) = question_edit_setup('editq', '/mod/swiftquiz/edit.php', true);
+    $modulename = get_string('modulename', 'swiftquiz');
+    $quizname = format_string($swiftquiz->data->name, true);
 
-$swiftquiz = new swiftquiz($cmid);
-$renderer = $swiftquiz->renderer;
+    $PAGE->set_url($url);
+    $PAGE->set_title(strip_tags($swiftquiz->course->shortname . ': ' . $modulename . ': ' . $quizname));
+    $PAGE->set_heading($swiftquiz->course->fullname);
 
-$modulename = get_string('modulename', 'swiftquiz');
-$quizname = format_string($swiftquiz->data->name, true);
+    if (swiftquiz_session_open($swiftquiz->data->id)) {
+        // Can't edit during a session.
+        $renderer->header($swiftquiz, 'edit');
+        $renderer->session_is_open_error();
+        $renderer->footer();
+        return;
+    }
 
-$PAGE->set_url($url);
-$PAGE->set_title(strip_tags($swiftquiz->course->shortname . ': ' . $modulename . ': ' . $quizname));
-$PAGE->set_heading($swiftquiz->course->fullname);
+    // Process moving, deleting and unhiding questions...
+    $questionbank = new \core_question\bank\view($contexts, $url, $COURSE, $cm);
+    $questionbank->process_actions();
 
-if (swiftquiz_session_open($swiftquiz->data->id)) {
-    // Can't edit during a session.
-    $renderer->header($swiftquiz, 'edit');
-    $renderer->session_is_open_error();
-    $renderer->footer();
-    return;
-}
-
-// Process moving, deleting and unhiding questions...
-$questionbank = new \core_question\bank\view($contexts, $url, $COURSE, $cm);
-$questionbank->process_actions();
-
-switch ($action) {
-    case 'order':
-        swiftquiz_edit_order($swiftquiz);
-        break;
-    case 'addquestion':
-        swiftquiz_edit_add_question($swiftquiz, $url);
-        break;
-    case 'editquestion':
-        swiftquiz_edit_edit_question($swiftquiz);
-        break;
-    case 'listquestions':
-        swiftquiz_edit_qlist($swiftquiz, $contexts, $url, $pagevars);
-        break;
-    default:
-        break;
-}
+    switch ($action) {
+        case 'order':
+            swiftquiz_edit_order($swiftquiz);
+            break;
+        case 'addquestion':
+            swiftquiz_edit_add_question($swiftquiz, $url);
+            break;
+        case 'editquestion':
+            swiftquiz_edit_edit_question($swiftquiz);
+            break;
+        case 'listquestions':
+            swiftquiz_edit_qlist($swiftquiz, $contexts, $url, $pagevars);
+            break;
+        default:
+            break;
+    }

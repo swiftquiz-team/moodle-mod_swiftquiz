@@ -70,7 +70,6 @@ function swiftquiz_view_tabs(swiftquiz $swiftquiz, string $tab) : string {
     }
     return print_tabs($tabs, $tab, $inactive, $activated, true);
 }
-
 namespace mod_swiftquiz;
 
 /**
@@ -172,62 +171,3 @@ function swiftquiz_edit_qlist(swiftquiz $swiftquiz, \question_edit_contexts $con
 }
 
 
-//report
-/**
- * @param swiftquiz $swiftquiz
- * @param \moodle_url $url
- * @throws \coding_exception
- * @throws \dml_exception
- * @throws \moodle_exception
- */
-function swiftquiz_view_session_report(swiftquiz $swiftquiz, \moodle_url $url) {
-    $sessionid = optional_param('sessionid', 0, PARAM_INT);
-    if ($sessionid === 0) {
-        // If no session id is specified, we try to load the first one.
-        global $DB;
-        $sessions = $DB->get_records('swiftquiz_sessions', [
-            'swiftquizid' => $swiftquiz->data->id
-        ]);
-        if (count($sessions) === 0) {
-            echo get_string('no_sessions_exist', 'swiftquiz');
-            return;
-        }
-        $sessionid = current($sessions)->id;
-    }
-    $session = new swiftquiz_session($swiftquiz, $sessionid);
-    $session->load_attempts();
-    $url->param('sessionid', $sessionid);
-    $context = $swiftquiz->renderer->view_session_report($session, $url);
-    echo $swiftquiz->renderer->render_from_template('swiftquiz/report', $context);
-}
-
-/**
- * @param swiftquiz $swiftquiz
- * @throws \coding_exception
- */
-function swiftquiz_export_session_report(swiftquiz $swiftquiz) {
-    $what = required_param('what', PARAM_ALPHANUM);
-    $sessionid = required_param('sessionid', PARAM_INT);
-    $session = new swiftquiz_session($swiftquiz, $sessionid);
-    $session->load_attempts();
-    $attempt = reset($session->attempts);
-    if (!$attempt) {
-        return;
-    }
-    header('Content-Type: application/csv');
-    $exporter = new exporter();
-    switch ($what) {
-        case 'report':
-            $exporter->export_session_csv($session, $session->attempts);
-            break;
-        case 'question':
-            $slot = required_param('slot', PARAM_INT);
-            $exporter->export_session_question_csv($session, $attempt, $slot);
-            break;
-        case 'attendance':
-            $exporter->export_attendance_csv($session);
-            break;
-        default:
-            break;
-    }
-}
