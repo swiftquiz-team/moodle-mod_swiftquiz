@@ -1,6 +1,10 @@
 <!-- MVC -->
 <!-- Model -->
 <?php
+require_once('../../config.php');
+require_once($CFG->dirroot . '/mod/swiftquiz/lib.php');
+require_once($CFG->dirroot . '/mod/swiftquiz/locallib.php');
+require_once($CFG->dirroot . '/question/editlib.php');
 $flag = false;
 $feedback = "";
 $text = '';

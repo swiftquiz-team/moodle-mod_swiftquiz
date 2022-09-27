@@ -43,6 +43,13 @@ function swiftquiz_view_tab(swiftquiz $swiftquiz, int $id, array &$row, string $
     }
 }
 
+function swiftquiz_view_tab_edit(swiftquiz $swiftquiz, int $id, array &$row, string $capability, string $name) {
+    if (has_capability($capability, $swiftquiz->context)) {
+        $url = new moodle_url("/mod/swiftquiz/$name.php", ['cmid' => $id]);
+        $row[] = new tabobject($name, $url, get_string($name, 'swiftquiz'));
+    }
+}
+
 /**
  * Prints tabs for instructor.
  * @param swiftquiz $swiftquiz
@@ -58,7 +65,7 @@ function swiftquiz_view_tabs(swiftquiz $swiftquiz, string $tab) : string {
     $activated = [];
     $id = $swiftquiz->cm->id;
     swiftquiz_view_tab($swiftquiz, $id, $row, 'mod/swiftquiz:attempt', 'view');
-    swiftquiz_view_tab($swiftquiz, $id, $row, 'mod/swiftquiz:editquestions', 'edit');
+    swiftquiz_view_tab_edit($swiftquiz, $id, $row, 'mod/swiftquiz:editquestions', 'edit');
     swiftquiz_view_tab($swiftquiz, $id, $row, 'mod/swiftquiz:seeresponses', 'reports');
     if ($tab === 'view' && count($row) === 1) {
         // No tabs for students.

@@ -30,7 +30,7 @@ define(['jquery'], function ($) {
      */
     function submitQuestionOrder(order, courseModuleId) {
         $.post('edit.php', {
-            id: courseModuleId,
+            cmid: courseModuleId,
             action: 'order',
             order: JSON.stringify(order)
         }, () => location.reload()); // TODO: Correct locally instead, but for now just refresh.
@@ -77,7 +77,7 @@ define(['jquery'], function ($) {
                 questionIds += checkbox.getAttribute('name').slice(1) + ',';
             }
             $.post('edit.php', {
-                id: courseModuleId,
+                cmid: courseModuleId,
                 action: 'addquestion',
                 questionids: questionIds,
             }, () => location.reload());

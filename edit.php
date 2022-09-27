@@ -37,7 +37,7 @@ require_login();
     global $PAGE, $COURSE;
     $action = optional_param('action', 'listquestions', PARAM_ALPHA);
    
-    $id = optional_param('id', false, PARAM_INT);
+   // $id = optional_param('id', false, PARAM_INT);
     // Inconsistency in question_edit_setup.
     // if (isset($_GET['id'])) {
     //     $_GET['cmid'] = $_GET['id'];
@@ -45,13 +45,18 @@ require_login();
     // if (isset($_POST['id'])) {
     //     $_POST['cmid'] = $_POST['id'];
     // }
-    if ($id) {
-        $_GET['cmid'] = $id;
-    }
-    if ($id) {
-        $_POST['cmid'] = $id;
-    }
+    //$cmid = optional_param('cmid', false ,PARAM_INT);
+    
 
+    // if ($id) {
+    //     $_GET['cmid'] = $id;
+    // }
+    // if ($id) {
+    //     $_POST['cmid'] = $id;
+    // }
+    //optional_param('cmid',0,PARAM_INT);
+    //$_POST['cmid']=$cmid;
+    
     list(
         $url,
         $contexts,
@@ -98,3 +103,4 @@ require_login();
         default:
             break;
     }
+
