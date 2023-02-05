@@ -59,9 +59,3 @@ if ($name != '' && $question != ''  && $answer1 != ''  && $answwer2 != ''  && $a
 ?>
 </body>
 </html>
-
-<pre>
-    <?php
-    print_r($_POST);
-    ?>
-</pre>

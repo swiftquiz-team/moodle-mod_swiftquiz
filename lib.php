@@ -316,7 +316,6 @@ function swiftquiz_ddwtos_resopnse_explode(string $str): array{
     return $arr;
 }
 
-namespace mod_swiftquiz;
 //ajax.php
 /**
  * Send a list of all the questions tagged for use with improvisation.
