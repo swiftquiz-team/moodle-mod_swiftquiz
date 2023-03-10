@@ -187,15 +187,14 @@ function swiftquiz_view() {
     $url->param('action', $action);
     $PAGE->set_url($url);
 
-
+    if ($swiftquiz->is_instructor()) {
+        $improviser = new improviser($swiftquiz);
+        $improviser->insert_default_improvised_question_definitions();
+    }
     if ($action === 'quizstart') {
         swiftquiz_view_start_quiz($swiftquiz);
     } else {
         swiftquiz_view_default($swiftquiz);
-    }
-    if ($swiftquiz->is_instructor()) {
-        $improviser = new improviser($swiftquiz);
-        $improviser->insert_default_improvised_question_definitions();
     }
 
 }
