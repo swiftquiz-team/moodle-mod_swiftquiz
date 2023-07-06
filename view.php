@@ -32,7 +32,10 @@ require_once($CFG->dirroot . '/mod/swiftquiz/locallib.php');
 require_once($CFG->libdir . '/questionlib.php');
 require_once($CFG->dirroot . '/question/editlib.php');
 
-require_login();
+$id = required_param('id', PARAM_INT);
+$cm             = get_coursemodule_from_id('swiftquiz', $id, 0, false, MUST_EXIST);
+$course         = $DB->get_records('course', array('id' => $cm->course), '*', MUST_EXIST);
+require_login($course, true, $cm);
 
 /**
  * View the quiz page.
