@@ -42,6 +42,8 @@ The Mod Swift Quiz is based on Jazz Quiz,  however it contains the extra feature
 
 ## See also
 
+- [Moodle SwiftQuiz Page](https://moodle.org/plugins/mod_swiftquiz)
+
 - [SwiftQuiz GitHub](https://github.com/justlorain/moodle-mod_swiftquiz)
 
 - [SwiftQuiz GitHub Wiki](https://github.com/justlorain/moodle-mod_swiftquiz/wiki)
