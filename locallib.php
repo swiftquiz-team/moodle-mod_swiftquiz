@@ -24,6 +24,7 @@
  */
 
 use mod_swiftquiz\swiftquiz;
+use mod_swiftquiz\bank;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -77,7 +78,6 @@ function swiftquiz_view_tabs(swiftquiz $swiftquiz, string $tab) : string {
     }
     return print_tabs($tabs, $tab, $inactive, $activated, true);
 }
-namespace mod_swiftquiz;
 
 /**
  * Check if this swiftquiz has an open session.
