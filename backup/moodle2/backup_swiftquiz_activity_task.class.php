@@ -50,10 +50,10 @@ class backup_swiftquiz_activity_task extends backup_activity_task {
         $base = preg_quote($CFG->wwwroot, '/');
         // Link to the list of swiftquizes.
         $search = "/(" . $base . "\/mod\/swiftquiz\/index.php\?id\=)([0-9]+)/";
-        $content = preg_replace($search, '$@SWIFTQUIZINDEX*$2@$', $content);
+        $content = preg_replace($search, '$@swiftquizINDEX*$2@$', $content);
         // Link to swiftquiz view by moduleid.
         $search = "/(" . $base . "\/mod\/swiftquiz\/view.php\?id\=)([0-9]+)/";
-        $content = preg_replace($search, '$@SWIFTQUIZVIEWBYID*$2@$', $content);
+        $content = preg_replace($search, '$@swiftquizVIEWBYID*$2@$', $content);
         return $content;
     }
 

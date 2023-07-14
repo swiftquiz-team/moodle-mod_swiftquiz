@@ -1,83 +1,83 @@
-.path-mod-swiftquiz .swiftquiz-box {
+.swiftquiz-box {
     background: #fafafa;
     border: 1px solid #ddd;
     margin: 0;
     padding: 20px;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .row {
+.swiftquiz-box .row {
     margin: 5px;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .inline-block {
+.swiftquiz-box .inline-block {
     display: inline-block;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .span6 {
+.swiftquiz-box .span6 {
     vertical-align: top;
     width: 49.5%;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .row .span6 {
+.swiftquiz-box .row .span6 {
     padding: 5px;
 }
 
-.path-mod-swiftquiz .swiftquiz-save-question {
+.swiftquiz-save-question {
     height: 30px;
 }
 
 @media (min-width: 480px) {
-    .path-mod-swiftquiz .swiftquiz-save-question {
+    .swiftquiz-save-question {
         margin-left: 8em;
     }
 }
 
-.path-mod-swiftquiz #swiftquiz_loading {
+#swiftquiz_loading {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     width: 30%;
 }
 
-.path-mod-swiftquiz #swiftquiz_responses_container,
-.path-mod-swiftquiz #swiftquiz_responded_container,
-.path-mod-swiftquiz #swiftquiz_info_container {
+#swiftquiz_responses_container,
+#swiftquiz_responded_container,
+#swiftquiz_info_container {
     border: 1px solid #eee;
     border-radius: 0;
     margin: 0;
     padding: 6px 16px;
 }
 
-.path-mod-swiftquiz #swiftquiz_side_container {
+#swiftquiz_side_container {
     padding: 0;
     margin: 0;
     border: 1px solid #eee;
 }
 
-.path-mod-swiftquiz #swiftquiz_question_timer {
+#swiftquiz_question_timer {
     font-size: 1.5rem;
 }
 
-.path-mod-swiftquiz #swiftquiz_responses_container {
+#swiftquiz_responses_container {
     padding: 0;
 }
 
-.path-mod-swiftquiz #swiftquiz_side_container > div {
+#swiftquiz_side_container > div {
     display: inline-block;
     border: none;
     padding: 6px 16px;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .submit {
+.swiftquiz-box .submit {
     display: none;
 }
 
-.path-mod-swiftquiz #swiftquiz .hidden {
+#swiftquiz .hidden {
     display: none;
     visibility: hidden;
 }
 
-.path-mod-swiftquiz .swiftquiz-fullscreen {
+.swiftquiz-fullscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -89,33 +89,33 @@
     overflow-y: scroll;
 }
 
-.path-mod-swiftquiz .swiftquiz-fullscreen #swiftquiz_control_separator {
+.swiftquiz-fullscreen #swiftquiz_control_separator {
     display: none;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview {
+.swiftquiz-responses-overview {
     width: 100%;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td p {
+.swiftquiz-responses-overview tr td p {
     margin: 0;
     padding: 0;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td {
+.swiftquiz-responses-overview tr td {
     border-top: 2px solid #eee;
     border-bottom: 2px solid #eee;
     padding: 8px 0;
     word-break: break-all;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td.bar {
+.swiftquiz-responses-overview tr td.bar {
     padding-left: 16px;
     padding-right: 16px;
     cursor: pointer;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td:first-child {
+.swiftquiz-responses-overview tr td:first-child {
     cursor: pointer;
     width: 256px;
     text-align: center;
@@ -123,50 +123,50 @@
     padding-right: 8px;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td.bar div {
+.swiftquiz-responses-overview tr td.bar div {
     background: #29f;
     border-radius: 1.5rem;
     text-align: right;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td.bar div span {
+.swiftquiz-responses-overview tr td.bar div span {
     color: white;
     text-shadow: 0 0 10px white;
     font-size: 1.6rem;
     margin-right: 1.6rem;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr:first-child td {
+.swiftquiz-responses-overview tr:first-child td {
     border-top: none;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr:last-child td {
+.swiftquiz-responses-overview tr:last-child td {
     border-bottom: none;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr {
+.swiftquiz-responses-overview tr {
     opacity: 0.3;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr.selected-vote-option {
+.swiftquiz-responses-overview tr.selected-vote-option {
     opacity: 1;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td:first-child .filter_mathjaxloader_equation .MathJax:focus {
+.swiftquiz-responses-overview tr td:first-child .filter_mathjaxloader_equation .MathJax:focus {
     outline: none;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr td.options {
+.swiftquiz-responses-overview tr td.options {
     width: 48px;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr.outside .bar div span {
+.swiftquiz-responses-overview tr.outside .bar div span {
     margin-right: -2.5rem;
     color: #444;
     text-shadow: 0 0 10px #999;
 }
 
-.path-mod-swiftquiz .swiftquiz-vote label {
+.swiftquiz-vote label {
     display: block;
     padding: 10px;
     cursor: pointer;
@@ -174,30 +174,30 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.path-mod-swiftquiz .swiftquiz-vote label:hover {
+.swiftquiz-vote label:hover {
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.path-mod-swiftquiz .swiftquiz-vote label > span p {
+.swiftquiz-vote label > span p {
     display: inline-block;
     margin: 0;
     padding: 0;
 }
 
-.path-mod-swiftquiz #swiftquiz_controls_box {
+#swiftquiz_controls_box {
     border-radius: 0;
     padding: 0;
     border: 0;
     margin: 0;
 }
 
-.path-mod-swiftquiz #swiftquiz_controls {
+#swiftquiz_controls {
     display: block;
     background: #f9f9f9;
 }
 
-.path-mod-swiftquiz #swiftquiz_state {
+#swiftquiz_state {
     margin: 0;
     padding: 0;
     display: inline-block;
@@ -209,7 +209,7 @@
     font-style: italic;
 }
 
-.path-mod-swiftquiz #swiftquiz_controls .btn {
+#swiftquiz_controls .btn {
     text-align: left;
     border: none;
     outline: none;
@@ -217,159 +217,159 @@
     background: #f9f9f9;
 }
 
-.path-mod-swiftquiz .swiftquiz-fullscreen #swiftquiz_controls .btn {
+.swiftquiz-fullscreen #swiftquiz_controls .btn {
     font-size: 1.4vw;
     padding: 0.6vw 1.2vw;
 }
 
-.path-mod-swiftquiz #swiftquiz_controls .btn:hover,
-.path-mod-swiftquiz #swiftquiz_controls .btn.active {
+#swiftquiz_controls .btn:hover,
+#swiftquiz_controls .btn.active {
     background: #29f;
     color: white;
     transition: none;
 }
 
 @media all and (min-width: 1152px) {
-    .path-mod-swiftquiz .swiftquiz-fullscreen #swiftquiz_controls .btn {
+    .swiftquiz-fullscreen #swiftquiz_controls .btn {
         font-size: 1.1rem;
     }
-    .path-mod-swiftquiz .swiftquiz-fullscreen #swiftquiz_controls_state {
+    .swiftquiz-fullscreen #swiftquiz_controls_state {
         font-size: 1rem;
     }
 }
 
-.path-mod-swiftquiz .start-question-menu {
+.start-question-menu {
     position: absolute;
     display: none;
 }
 
-.path-mod-swiftquiz .start-question-menu.active {
+.start-question-menu.active {
     display: block;
     z-index: 100;
 }
 
-.path-mod-swiftquiz .start-question-menu .btn {
+.start-question-menu .btn {
     display: block;
     width: 100%;
 }
 
-.path-mod-swiftquiz #swiftquiz_control_quit,
-.path-mod-swiftquiz #swiftquiz_control_responses,
-.path-mod-swiftquiz #swiftquiz_control_answer {
+#swiftquiz_control_quit,
+#swiftquiz_control_responses,
+#swiftquiz_control_answer {
     float: right;
 }
 
-.path-mod-swiftquiz .merge-from {
+.merge-from {
     background: #eee;
     cursor: pointer;
 }
 
-.path-mod-swiftquiz .merge-into {
+.merge-into {
     cursor: pointer;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr .bar {
+.swiftquiz-responses-overview tr .bar {
     transition: 0.6s ease padding-left;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview .merge-into .bar {
+.swiftquiz-responses-overview .merge-into .bar {
     padding-left: 64px;
     transition: 0.3s ease padding-left;
 }
 
-.path-mod-swiftquiz .swiftquiz-responses-overview tr .bar div {
+.swiftquiz-responses-overview tr .bar div {
     transition: 1s ease width;
 }
 
-.path-mod-swiftquiz .merge-into .bar div {
+.merge-into .bar div {
     opacity: 0.7;
 }
 
-.path-mod-swiftquiz .merge-into:hover .bar div {
+.merge-into:hover .bar div {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     opacity: 1;
 }
 
-.path-mod-swiftquiz #swiftquiz_question_box .que,
-.path-mod-swiftquiz #swiftquiz_correct_answer_container .que,
-.path-mod-swiftquiz #swiftquiz_question_box .que .content,
-.path-mod-swiftquiz #swiftquiz_correct_answer_container .que .content {
+#swiftquiz_question_box .que,
+#swiftquiz_correct_answer_container .que,
+#swiftquiz_question_box .que .content,
+#swiftquiz_correct_answer_container .que .content {
     margin: 0;
 }
 
-.path-mod-swiftquiz #swiftquiz_question_box .que .formulation,
-.path-mod-swiftquiz #swiftquiz_correct_answer_container .que .formulation {
+#swiftquiz_question_box .que .formulation,
+#swiftquiz_correct_answer_container .que .formulation {
     border: none;
     background: #fafafa;
     margin: 0;
 }
 
-.path-mod-swiftquiz #swiftquiz_question_box .que .info {
+#swiftquiz_question_box .que .info {
     display: none;
 }
 
-.path-mod-swiftquiz #swiftquiz_correct_answer_container .que .info {
+#swiftquiz_correct_answer_container .que .info {
     display: none;
 }
 
-.path-mod-swiftquiz #swiftquiz_info_container {
+#swiftquiz_info_container {
     padding: 32px;
     font-size: 1.2rem;
     background: #eee;
     border: 1px solid #ddd;
 }
 
-.path-mod-swiftquiz #swiftquiz_info_container table tr td {
+#swiftquiz_info_container table tr td {
     padding: 16px 8px;
 }
 
-.path-mod-swiftquiz #swiftquiz_info_container table tr td:first-child {
+#swiftquiz_info_container table tr td:first-child {
     width: 256px;
 }
 
-.path-mod-swiftquiz #swiftquiz_info_container table tr:nth-child(odd) td {
+#swiftquiz_info_container table tr:nth-child(odd) td {
     background: rgba(0, 0, 0, 0.05);
 }
 
-.path-mod-swiftquiz .formulation .questiontestslink {
+.formulation .questiontestslink {
     display: none;
 }
 
-.path-mod-swiftquiz #swiftquiz_response_info_container h4 {
+#swiftquiz_response_info_container h4 {
     font-size: 1.2rem;
     vertical-align: middle;
 }
 
-.path-mod-swiftquiz #swiftquiz_response_info_container .btn.btn-primary,
-.path-mod-swiftquiz #report_overview_controls .btn.btn-primary {
+#swiftquiz_response_info_container .btn.btn-primary,
+#report_overview_controls .btn.btn-primary {
     margin-left: 16px;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist .dragquestion {
+.swiftquiz-box .questionlist .dragquestion {
     width: 10%;
     cursor: move;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist .icon {
+.swiftquiz-box .questionlist .icon {
     vertical-align: middle;
     height: auto;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist .name {
+.swiftquiz-box .questionlist .name {
     width: calc(100% - 256px);
     vertical-align: middle;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist .name p {
+.swiftquiz-box .questionlist .name p {
     margin: 0;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist .controls {
+.swiftquiz-box .questionlist .controls {
     width: 100%;
     vertical-align: middle;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist li {
+.swiftquiz-box .questionlist li {
     min-height: 30px;
     margin: 4px;
     padding: 10px;
@@ -377,53 +377,53 @@
     background: #eee;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist li div {
+.swiftquiz-box .questionlist li div {
     display: inline-block;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist li:hover {
+.swiftquiz-box .questionlist li:hover {
     background: #ddd;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist li a {
+.swiftquiz-box .questionlist li a {
     color: black;
 }
 
-.path-mod-swiftquiz .swiftquiz-box .questionlist li a:hover i.icon {
+.swiftquiz-box .questionlist li a:hover i.icon {
     color: #29f;
 }
 
-.path-mod-swiftquiz #categoryquestions thead {
+#categoryquestions thead {
     background: #eee;
 }
 
-.path-mod-swiftquiz #report_overview_controls a {
+#report_overview_controls a {
     margin-left: 32px;
 }
 
-.path-mod-swiftquiz #report_overview_responded table tr {
+#report_overview_responded table tr {
     border-bottom: 1px solid #aaa;
 }
 
-.path-mod-swiftquiz #report_overview_responded table tr td,
-.path-mod-swiftquiz #report_overview_responded table tr th {
+#report_overview_responded table tr td,
+#report_overview_responded table tr th {
     padding: 8px 16px;
     font-size: 1.2rem;
 }
 
-.path-mod-swiftquiz .swiftquiz-box.instructor {
+.swiftquiz-box.instructor {
     width: 100%;
 }
 
-.path-mod-swiftquiz .edit-question-action {
+.edit-question-action {
     cursor: pointer;
 }
 
-.path-mod-swiftquiz #swiftquiz_response_info_container .btn.btn-primary,
-.path-mod-swiftquiz #report_overview_controls .btn.btn-primary,
-.path-mod-swiftquiz #swiftquiz_undo_merge,
-.path-mod-swiftquiz #swiftquiz_control_startquiz,
-.path-mod-swiftquiz #swiftquiz_control_exit {
+#swiftquiz_response_info_container .btn.btn-primary,
+#report_overview_controls .btn.btn-primary,
+#swiftquiz_undo_merge,
+#swiftquiz_control_startquiz,
+#swiftquiz_control_exit {
     background: #eee;
     color: #444;
     border-radius: 0;
@@ -431,40 +431,40 @@
     outline: none;
 }
 
-.path-mod-swiftquiz #swiftquiz_control_startquiz {
+#swiftquiz_control_startquiz {
     font-size: 2rem;
     padding: 16px 32px;
     margin: 16px;
 }
 
-.path-mod-swiftquiz #swiftquiz_control_startquiz:hover,
-.path-mod-swiftquiz #swiftquiz_control_exit:hover,
-.path-mod-swiftquiz #swiftquiz_undo_merge:hover,
-.path-mod-swiftquiz #report_overview_controls .btn.btn-primary:hover,
-.path-mod-swiftquiz #swiftquiz_response_info_container .btn.btn-primary:hover {
+#swiftquiz_control_startquiz:hover,
+#swiftquiz_control_exit:hover,
+#swiftquiz_undo_merge:hover,
+#report_overview_controls .btn.btn-primary:hover,
+#swiftquiz_response_info_container .btn.btn-primary:hover {
     background: #29f;
     color: #fff;
     transition: none;
 }
 
-.path-mod-swiftquiz #swiftquiz_control_exit {
+#swiftquiz_control_exit {
     float: right;
     margin: 16px;
     font-size: 1.2rem;
 }
 
-.path-mod-swiftquiz .swiftquiz-add-selected-questions {
+.swiftquiz-add-selected-questions {
     margin: 4px;
 }
 
-.path-mod-swiftquiz .start-question-menu .MathJax_Display,
-.path-mod-swiftquiz .questionlist li .controls .name .MathJax_Display {
+.start-question-menu .MathJax_Display,
+.questionlist li .controls .name .MathJax_Display {
     text-align: left !important;
     margin: 0 !important;
 }
 
 /*模态框*/
-.path-mod-swiftquiz .modal {
+.modal {
     display: none; /* 默认隐藏 */
     position: fixed; /* 根据浏览器定位 */
     z-index: 1; /* 放在顶部 */
@@ -476,7 +476,7 @@
     background-color: rgba(0,0,0,0.4); /* 背景色 */
 }
 /*模态框内容*/
-.path-mod-swiftquiz .modal-content {
+.modal-content {
     display: flex; /*采用flexbox布局*/
     flex-direction: column; /*垂直排列*/
     position: relative;
@@ -492,21 +492,28 @@
     to {top: 0; opacity: 1}
 }
 /*模态框头部*/
-.path-mod-swiftquiz .modal-header {
+.modal-header {
     display: flex; /*采用flexbox布局*/
     flex-direction: row; /*水平布局*/
     align-items: center; /*内容垂直居中*/
     justify-content: space-between;
 }
 /*关闭X 样式*/
-.path-mod-swiftquiz .close {
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-.path-mod-swiftquiz .close:hover {
+.close:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-footer {
+    display: flex; /*采用flexbox布局*/
+    flex-direction: row; /*水平布局*/
+    align-items: center; /*内容垂直居中*/
+    justify-content: space-between;
 }

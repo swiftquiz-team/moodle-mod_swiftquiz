@@ -1,19 +1,10 @@
 <!-- MVC -->
 <!-- Model -->
 <?php
-require_once('../../config.php');
-require_once($CFG->dirroot . '/mod/swiftquiz/lib.php');
-require_once($CFG->dirroot . '/mod/swiftquiz/locallib.php');
-require_once($CFG->dirroot . '/question/editlib.php');
 $flag = false;
 $feedback = "";
 $text = '';
-$name = optional_param('name', '', PARAM_TEXT);
-$question = optional_param('question', '', PARAM_TEXT);
-$answer1 =optional_param('answer1', '', PARAM_TEXT);
-$answer2 =optional_param('answer2', '', PARAM_TEXT);
-$answer3 =optional_param('answer3', '', PARAM_TEXT);
-if ($name != '' && $question != ''  && $answer1 != ''  && $answwer2 != ''  && $answer3 != '' ) {
+if (isset($_POST['name']) && isset($_POST["question"]) && isset($_POST['answer1']) && isset($_POST['answer2']) && isset($_POST['answer3'])) {
     $feedback = "Successful submission";
     $flag = true;
 }
@@ -45,17 +36,20 @@ if ($name != '' && $question != ''  && $answer1 != ''  && $answwer2 != ''  && $a
         <input type="submit">
 </form>
 <?php
-   $name = optional_param('name', '', PARAM_TEXT);
-   $question = optional_param('question', '', PARAM_TEXT);
-   $answer1 =optional_param('answer1', '', PARAM_TEXT);
-   $answer2 =optional_param('answer2', '', PARAM_TEXT);
-   $answer3 =optional_param('answer3', '', PARAM_TEXT);
-   $answer = [];
-   $answer[] = $answer1;
-   $answer[] = $answer2;
-   $answer[] = $answer3;
+    $name = $_POST['name'];
+    $question = $_POST['question'];
+    $answer = [];
+    $answer[] = $_POST['answer1'];
+    $answer[] = $_POST['answer2'];
+    $answer[] = $_POST['answer3'];
 //    require_once ('ajax.php');
     $go = 1;
 ?>
 </body>
 </html>
+
+<pre>
+    <?php
+    print_r($_POST);
+    ?>
+</pre>

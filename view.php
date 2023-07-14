@@ -32,10 +32,7 @@ require_once($CFG->dirroot . '/mod/swiftquiz/locallib.php');
 require_once($CFG->libdir . '/questionlib.php');
 require_once($CFG->dirroot . '/question/editlib.php');
 
-$id = required_param('id', PARAM_INT);
-$cm             = get_coursemodule_from_id('swiftquiz', $id, 0, false, MUST_EXIST);
-$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-require_login($course, true, $cm);
+require_login();
 
 /**
  * View the quiz page.
@@ -47,7 +44,7 @@ function swiftquiz_view_start_quiz(swiftquiz $swiftquiz) {
     global $PAGE;
     // Set the quiz view page to the base layout for 1 column layout.
     $PAGE->set_pagelayout('base');
-    $PAGE->requires->js('/mod/swiftquiz/js/wordcloud2/wordcloud2.js');
+    $PAGE->requires->js('/mod/swiftquiz/js/wordcloud2.js');
     $session = $swiftquiz->load_open_session();
     if (!$session) {
         swiftquiz_view_default($swiftquiz);
@@ -190,14 +187,15 @@ function swiftquiz_view() {
     $url->param('action', $action);
     $PAGE->set_url($url);
 
-    if ($swiftquiz->is_instructor()) {
-        $improviser = new improviser($swiftquiz);
-        $improviser->insert_default_improvised_question_definitions();
-    }
+
     if ($action === 'quizstart') {
         swiftquiz_view_start_quiz($swiftquiz);
     } else {
         swiftquiz_view_default($swiftquiz);
+    }
+    if ($swiftquiz->is_instructor()) {
+        $improviser = new improviser($swiftquiz);
+        $improviser->insert_default_improvised_question_definitions();
     }
 
 }

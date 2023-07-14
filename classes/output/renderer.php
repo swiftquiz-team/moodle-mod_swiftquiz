@@ -446,7 +446,7 @@ class renderer extends \plugin_renderer_base {
      * @param int $cmid
      */
     public function require_edit($cmid) {
-        $this->page->requires->js('/mod/swiftquiz/js/sortable/sortable.min.js');
+        $this->page->requires->js('/mod/swiftquiz/js/sortable.min.js');
         $this->page->requires->js_call_amd('mod_swiftquiz/edit', 'initialize', [$cmid]);
     }
 
@@ -458,7 +458,7 @@ class renderer extends \plugin_renderer_base {
         $this->require_core($session);
         $count = count($session->swiftquiz->questions);
         $params = [$count, true, $slots];
-        $this->page->requires->js('/mod/swiftquiz/js/wordcloud2/wordcloud2.js');
+        $this->page->requires->js('/mod/swiftquiz/js/wordcloud2.js');
         $this->page->requires->js_call_amd('mod_swiftquiz/instructor', 'initialize', $params);
 
 

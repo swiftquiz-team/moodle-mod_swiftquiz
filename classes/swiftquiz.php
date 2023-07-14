@@ -257,7 +257,7 @@ class swiftquiz {
      */
     public function edit_question($questionid) {
         global $DB;
-        $url = new \moodle_url('/mod/swiftquiz/edit.php', ['cmid' => $this->cm->id]);
+        $url = new \moodle_url('/mod/swiftquiz/edit.php', ['id' => $this->cm->id]);
         $actionurl = clone($url);
         $actionurl->param('action', 'editquestion');
         $actionurl->param('questionid', $questionid);
