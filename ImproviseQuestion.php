@@ -42,14 +42,7 @@ if (isset($_POST['name']) && isset($_POST["question"]) && isset($_POST['answer1'
     $answer[] = $_POST['answer1'];
     $answer[] = $_POST['answer2'];
     $answer[] = $_POST['answer3'];
-//    require_once ('ajax.php');
     $go = 1;
 ?>
 </body>
 </html>
-
-<pre>
-    <?php
-    print_r($_POST);
-    ?>
-</pre>
