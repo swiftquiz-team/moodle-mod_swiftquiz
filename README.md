@@ -1,4 +1,7 @@
-# SwiftQuiz
+<h1>
+  <img src="pix/icon.svg" align="left" height="46px" alt="SwiftQuiz"/>
+  <span>SwiftQuiz</span>
+</h1>
 
 ## What is it?
 
