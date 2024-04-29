@@ -78,38 +78,42 @@ function swiftquiz_view_start_quiz(swiftquiz $swiftquiz) {
  */
 function swiftquiz_view_default_instructor(swiftquiz $swiftquiz) {
     global $PAGE, $DB;
-    $startsessionform = new forms\view\start_session($PAGE->url, ['swiftquiz' => $swiftquiz]);
-    $data = $startsessionform->get_data();
-    if ($data) {
-        $sessions = $DB->get_records('swiftquiz_sessions', [
-            'swiftquizid' => $swiftquiz->data->id,
-            'sessionopen' => 1
-        ]);
-        // Only create session if not already open.
-        if (empty($sessions)) {
-            $allowguests = isset($data->allowguests) ? 1 : 0;
-            $sessionid = $swiftquiz->create_session($data->session_name, $data->anonymity, $allowguests);
-            if ($sessionid === false) {
-                return;
+    try {
+        $startsessionform = new forms\view\start_session($PAGE->url, ['swiftquiz' => $swiftquiz]);
+        $data = $startsessionform->get_data();
+        if ($data) {
+            $sessionExists = $DB->record_exists(
+                'swiftquiz_sessions',
+                ['swiftquizid' => $swiftquiz->data->id, 'sessionopen' => 1]
+            );
+            // Only create session if not already open.
+            if (!$sessionExists) {
+                $allowguests = isset($data->allowguests) ? 1 : 0;
+                $sessionid = $swiftquiz->create_session($data->session_name, $data->anonymity, $allowguests);
+                if ($sessionid === false) {
+                    return;
+                }
+            } else {
+                redirect($PAGE->url, 'A session is already open.', 0);
+                // Note: Redirect exits.
             }
-        } else {
-            redirect($PAGE->url, 'A session is already open.', 0);
+            // Redirect to the quiz start.
+            $quizstarturl = clone($PAGE->url);
+            $quizstarturl->param('action', 'quizstart');
+            redirect($quizstarturl, null, 0);
             // Note: Redirect exits.
         }
-        // Redirect to the quiz start.
-        $quizstarturl = clone($PAGE->url);
-        $quizstarturl->param('action', 'quizstart');
-        redirect($quizstarturl, null, 0);
-        // Note: Redirect exits.
+        $renderer = $swiftquiz->renderer;
+        $renderer->header($swiftquiz, 'view');
+        if ($swiftquiz->is_session_open()) {
+            $renderer->continue_session_form($swiftquiz);
+        } else {
+            $renderer->start_session_form($startsessionform);
+        }
+        $renderer->footer();
+    } catch (Exception $e) {
+        error_log($e->getMessage());
     }
-    $renderer = $swiftquiz->renderer;
-    $renderer->header($swiftquiz, 'view');
-    if ($swiftquiz->is_session_open()) {
-        $renderer->continue_session_form($swiftquiz);
-    } else {
-        $renderer->start_session_form($startsessionform);
-    }
-    $renderer->footer();
 }
 
 /**
