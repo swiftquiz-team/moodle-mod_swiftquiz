@@ -3,3 +3,9 @@ out/
 docs/
 node_modules/
 vendor/
+
+*.log            # ignore log file
+*.sqlite         # ignore SQLite db file
+*.sqlite3        # ignore SQLite3 db file
+.DS_Store        # ignore macOS system file
+Thumbs.db        # ignore Windows system file
